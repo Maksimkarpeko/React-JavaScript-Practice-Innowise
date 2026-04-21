@@ -1,9 +1,10 @@
 import { Button } from "../../shared/Button/Button"
 import { Layout } from "../../shared/Layout/Layout"
 import logo from '../../assets/LogoXL.svg'
-import style from "./homeStyle.module.css"
+import style from "./startStyle.module.css"
+import { Links } from "../../constants/links"
 
-export const HomePage = () => {
+export const StartPage = () => {
   return (
     <Layout className={style.container}>
         <img src={logo} alt="logo" width={"5%"} className={style.img}/>
@@ -12,10 +13,10 @@ export const HomePage = () => {
           Monitor workforce engagement and track key personnel metrics across all departments.
         </p>   
         <div className={style.buttonContainer}> 
-          <Button size="medium" them="primary">
+          <Button size="medium" them="primary" isLink  link={Links.register}>
             Register
           </Button>
-          <Button size="medium" them="secondary" >
+          <Button size="medium" them="secondary" isLink link={Links.login}>
             Login
           </Button>
         </div>

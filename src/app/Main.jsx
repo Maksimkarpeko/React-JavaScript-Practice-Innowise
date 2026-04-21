@@ -1,9 +1,9 @@
-import { HomePage } from "../pages/Home";
+import { StartPage} from "../pages/Start";
 
 export const Main = () => {
   return (
     <>
-      <HomePage />
+      <StartPage />
     </>
   );
 };

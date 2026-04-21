@@ -5,6 +5,8 @@
 .itemText {
   font-size: 16px;
   padding-top: 5px;
+  text-decoration: none;
+  color: black;
 }
 .item:hover {
   color: #3874FF;

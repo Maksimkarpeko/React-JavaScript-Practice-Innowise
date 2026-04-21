@@ -10,7 +10,7 @@ export const Navigate = () => {
       <ul className={style.list}>
         {navigateList.map(item=>{
           return(
-            <NavigateItem src={item.src} alt={item.alt} text={item.text} key={item.alt}/>
+            <NavigateItem src={item.src} alt={item.alt} text={item.text} link={item.link} key={item.alt}/>
           )
         })}
       </ul>
