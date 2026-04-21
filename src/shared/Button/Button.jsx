@@ -1,10 +1,12 @@
-import clsx from "clsx"
-import style from './buttonStyle.module'
-import { Link } from "react-router"
-export const Button = ({them,size,children,isLink,link}) => {
-  const themes = clsx({
-    [style.primary]: them === "primary",
-    [style.secondary]: them === "secondary",
+import { Link } from "react-router";
+import clsx from "clsx";
+
+import style from './ButtonStyle.module';
+
+export const Button = ({variant,size,children,isLink,to}) => {
+  const variants = clsx({
+    [style.primary]: variant === "primary",
+    [style.secondary]: variant === "secondary",
   })
   
   const sizes = clsx({
@@ -13,19 +15,18 @@ export const Button = ({them,size,children,isLink,link}) => {
     [style.large]: size === "large",
   })
   
+  if (isLink) {
+    return (
+      <Link to={to} className={clsx(style.base,variants,sizes)}>
+        {children}
+      </Link>
+    )
+  }
+
+
   return (
-    <>
-      {
-      isLink ? 
-        <Link to={link}>
-          <button className={clsx(style.base,themes,sizes)}>
-            {children}
-          </button>
-        </Link> :         
-        <button className={clsx(style.base,themes,sizes)}>
-          {children}
-        </button>
-      }
-    </>
+    <button className={clsx(style.base,variants,sizes)}>
+      {children}
+    </button>
   )
 }

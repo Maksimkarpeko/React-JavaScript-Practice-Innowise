@@ -1,15 +1,17 @@
-import { Layout } from "../../shared/Layout/Layout"
-import error from '../../assets/c03e7347881e6b8350eab44c1a487ac8.jpg'
-import { Button } from "../../shared/Button/Button"
-import style from './errorStyle.module.css'
+import style from './errorStyle.module.css';
+
+import error from '@assets/CatMem.jpg';
+import { Button } from "@shared/Button/Button";
+import { RouterPath } from '@constants/routerPath';
+
 export const Error = () => {
   return (
-    <Layout className={style.container}>
+    <>
       <img src={error} alt="error" className={style.img} />
-      I don't know what happened
-      <Button size={'medium'} them={'primary'}>
+      <p>I don't know what happened</p>
+      <Button size={'medium'} variant={'primary'} to={RouterPath.home}>
         Go to the Main page
       </Button>
-    </Layout>
+    </>
   )
 }

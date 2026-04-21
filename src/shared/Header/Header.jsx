@@ -1,12 +1,13 @@
-import { HeaderAction } from "../HeaderAction/HeaderAction"
-import { Navigate } from "../Navigate/Navigate"
-import style from "./headerStyle.module"
+import style from "./HeaderStyle.module.css";
+import { HeaderAction } from "./component/HeaderAction";
+import { Navigate } from "./component/Navigate";
+
 export const Header = () => {
   return (
     <header className={style.header}>
       <div className={style.left}></div>
-      <Navigate/>
-      <HeaderAction/>
+      <Navigate />
+      <HeaderAction />
     </header>
   )
 }

@@ -7,3 +7,45 @@
 .left { 
   width: 10px;
 }
+
+.auth {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  padding-right: 25px;
+}
+
+
+.navigate{
+  height: 4em;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+}
+.list {
+  height: 100%;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  list-style: none; 
+  gap: 42px;
+}
+
+
+
+
+.item {
+  display: flex;
+}
+
+.itemText {
+  font-size: 16px;
+  padding-top: 5px;
+  text-decoration: none;
+  color: black;
+}
+.item:hover {
+  color: #3874FF;
+  cursor: pointer;
+  border-bottom:1px solid #3874FF ;
+}
