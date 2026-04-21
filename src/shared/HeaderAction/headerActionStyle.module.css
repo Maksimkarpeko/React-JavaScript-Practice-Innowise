@@ -1,0 +1,6 @@
+.auth {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  padding-right: 25px;
+}

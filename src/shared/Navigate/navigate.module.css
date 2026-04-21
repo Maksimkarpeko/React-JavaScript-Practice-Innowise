@@ -1,0 +1,16 @@
+.navigate{
+  height: 4em;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+}
+.list {
+  height: 100%;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  list-style: none; 
+  gap: 42px;
+}
+
+

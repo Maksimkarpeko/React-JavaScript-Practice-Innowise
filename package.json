@@ -11,6 +11,7 @@
     "build": "set NODE_ENV=production && webpack --config webpack.config.js"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "react": "^19.2.5",
     "react-dom": "^19.2.5"
   },

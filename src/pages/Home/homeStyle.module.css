@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.img {
+  margin-bottom: 10px;
+}
+.title {
+  padding-bottom:10px ;
+}
+.text {
+  padding-bottom: 10px;
+}
+.buttonContainer {
+  display: flex;
+  gap: 20px;
+}
