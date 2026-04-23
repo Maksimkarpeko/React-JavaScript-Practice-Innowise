@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router";
-import style from "./HeaderStyle.module.css";
-import { NavigateBar } from "./ui/NavigateBar";
 import { Button } from "@shared/ui/button/Button";
 import { RouterPath } from "@shared/constants/routerPath";
+import { LOCALIZATION } from "@shared/constants/localization";
+import style from "./HeaderStyle.module.css";
+import { NavigateBar } from "./NavigationBar";
 
 
 export const Header = () => {
@@ -15,11 +16,23 @@ export const Header = () => {
        {
         isAuth ? "PROFILE": (
           <div className={style.headerAuthContainer}>
-            <Button size="medium" variant="primary" onClick={()=>navigate({pathname:RouterPath.register,search:"?mode=register"})}>
-              Register
+            <Button 
+              name="button"
+              size="medium" 
+              variant="primary" 
+              onClick={()=>navigate({pathname:RouterPath.register,search:"?mode=register"})}
+              ariaLabel="navigate to register page"
+            >
+              {LOCALIZATION.en.header.registration}
             </Button>
-            <Button size="medium" variant="secondary" onClick={()=>navigate({pathname:RouterPath.login,search:"?mode=Login"})}>
-              Login
+            <Button 
+              name="button"
+              size="medium" 
+              variant="secondary" 
+              onClick={()=>navigate({pathname:RouterPath.login,search:"?mode=Login"})}
+              ariaLabel="navigate to login page"
+            >
+              {LOCALIZATION.en.header.login}
             </Button>
           </div>
         )

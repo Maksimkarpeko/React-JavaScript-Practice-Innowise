@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import style from './ButtonStyle.module';
 
-export const Button = ({variant,size,children, onClick}) => {
+export const Button = ({type = "button",name,variant,size,children,onClick,ariaLabel}) => {
   const variants = clsx({
     [style.primary]: variant === "primary",
     [style.secondary]: variant === "secondary",
@@ -15,7 +15,13 @@ export const Button = ({variant,size,children, onClick}) => {
   
 
   return (
-    <button className={clsx(style.base,variants,sizes)} onClick={onClick}>
+    <button 
+      type={type} 
+      name={name} 
+      className={clsx(style.base,variants,sizes)} 
+      onClick={onClick}
+      aria-label={ariaLabel}
+    >
       {children}
     </button>
   )
