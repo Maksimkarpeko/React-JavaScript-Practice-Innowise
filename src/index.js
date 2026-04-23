@@ -1,13 +1,11 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
-
 import "./index.css";
-
-import { RouterPath } from "@constants/routerPath.js";
-import { HomePage } from "@pages/home/index.js";
-import { Error } from "@pages/error/index.js";
-import { Layout } from "@shared/Layout/Layout.jsx";
+import { RouterPath } from "@shared/constants/routerPath.js";
+import { HomePage } from "@pages/home/HomePage.jsx";
+import { Error } from "@pages/error/Error.jsx";
+import { Layout } from "@shared/components/layout/Layout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,8 +17,8 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: RouterPath.tables,
-        element: <>Tables Page</>,
+        path: RouterPath.dashboards,
+        element: <>Dashboards Page</>,
       },
       {
         path: RouterPath.document,

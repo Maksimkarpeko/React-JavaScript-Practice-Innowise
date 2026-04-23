@@ -12,9 +12,7 @@ Follow these steps to get the project up and running on your local machine:
    Bash
    npm install
 
-# or
-
-yarn install 3. Run the development server
+3. Run the development server
 Bash
 npm run dev
 

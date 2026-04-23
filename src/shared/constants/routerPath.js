@@ -1,6 +1,6 @@
 export const RouterPath = {
   home: "/",
-  tables: "tables",
+  dashboards: "dashboards",
   register: "register",
   login: "login",
   document: "document"

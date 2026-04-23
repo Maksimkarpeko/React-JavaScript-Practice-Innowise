@@ -7,10 +7,11 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const isProduction = process.env.NODE_ENV === "production";
 
 module.exports = {
-  entry: { myAppName: path.resolve(__dirname, "./src/app/index.js") },
+  entry: { myAppName: path.resolve(__dirname, "./src/index.js") },
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: isProduction ? "[name].[contenthash].js" : "[name].js",
+    publicPath: "/",
   },
   module: {
     rules: [
@@ -43,14 +44,12 @@ module.exports = {
     ],
   },
   resolve: {
-    alias:{
+    alias: {
       "@app": path.resolve(__dirname, "src/app/"),
-      "@assets": path.resolve(__dirname, "src/assets/"),
-      "@constants": path.resolve(__dirname, "src/constants/"),
       "@modules": path.resolve(__dirname, "src/module/"),
       "@pages": path.resolve(__dirname, "src/pages/"),
       "@shared": path.resolve(__dirname, "src/shared/"),
-      "@": path.resolve(__dirname, "src/")
+      "@": path.resolve(__dirname, "src/"),
     },
     extensions: ["*", ".js", ".jsx", ".css"],
   },
@@ -68,6 +67,7 @@ module.exports = {
   devServer: {
     port: 3001,
     hot: true,
+    historyApiFallback: true,
   },
   mode: isProduction ? "production" : "development",
 };

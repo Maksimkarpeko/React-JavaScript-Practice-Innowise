@@ -6,11 +6,11 @@ import { RouterPath } from "../../../constants/routerPath";
 
 export const navigateList = [
   { src: home, alt: "Home", text: "Home", link: RouterPath.home },
-  { src: Grid, alt: "Tables", text: "Tables", link: RouterPath.tables },
+  { src: Grid, alt: "Dashboards", text: "Dashboards", link: RouterPath.dashboards },
   {
     src: Document,
     alt: "Document",
     text: "Documentation",
     link: RouterPath.document,
-  }
+  },
 ];
