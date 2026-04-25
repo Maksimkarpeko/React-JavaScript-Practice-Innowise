@@ -4,13 +4,14 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-const production = process.env.NODE_ENV === "production";
+const isProduction = process.env.NODE_ENV === "production";
 
 module.exports = {
   entry: { myAppName: path.resolve(__dirname, "./src/index.js") },
   output: {
     path: path.resolve(__dirname, "./dist"),
-    filename: production ? "[name].[contenthash].js" : "[name].js",
+    filename: isProduction ? "[name].[contenthash].js" : "[name].js",
+    publicPath: "/",
   },
   module: {
     rules: [
@@ -23,26 +24,33 @@ module.exports = {
         test: /\.css$/,
         exclude: /node_modules/,
         use: [
-          production ? MiniCssExtractPlugin.loader : "style-loader",
+          isProduction ? MiniCssExtractPlugin.loader : "style-loader",
           {
             loader: "css-loader",
             options: {
               modules: {
-                auto:true,
-                namedExport:false
+                auto: true,
+                namedExport: false,
               },
-              sourceMap: !production,
+              sourceMap: !isProduction,
             },
           },
         ],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
       },
     ],
   },
   resolve: {
+    alias: {
+      "@app": path.resolve(__dirname, "src/app/"),
+      "@modules": path.resolve(__dirname, "src/module/"),
+      "@pages": path.resolve(__dirname, "src/pages/"),
+      "@shared": path.resolve(__dirname, "src/shared/"),
+      "@": path.resolve(__dirname, "src/"),
+    },
     extensions: ["*", ".js", ".jsx", ".css"],
   },
   plugins: [
@@ -53,12 +61,13 @@ module.exports = {
       template: "./index.html",
     }),
     new MiniCssExtractPlugin({
-      filename: production ? "[name].[contenthash].css" : "[name].css",
+      filename: isProduction ? "[name].[contenthash].css" : "[name].css",
     }),
   ],
   devServer: {
     port: 3001,
     hot: true,
+    historyApiFallback: true,
   },
-  mode: production ? "production" : "development",
+  mode: isProduction ? "production" : "development",
 };
