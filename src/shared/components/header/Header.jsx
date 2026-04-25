@@ -29,7 +29,7 @@ export const Header = () => {
               name="button"
               size="medium" 
               variant="secondary" 
-              onClick={()=>navigate({pathname:RouterPath.login,search:"?mode=Login"})}
+              onClick={()=>navigate({pathname:RouterPath.login,search:"?mode=login"})}
               ariaLabel="navigate to login page"
             >
               {LOCALIZATION.en.header.login}

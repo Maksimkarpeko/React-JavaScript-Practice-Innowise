@@ -20,7 +20,7 @@ export const Error = () => {
         onClick={()=>navigate(RouterPath.home)}
         ariaLabel="navigate the home"
       >
-        {LOCALIZATION.en.error.navigation}
+        {LOCALIZATION.en.error.goToMainPage}
       </Button>
     </div>
   )

@@ -6,9 +6,10 @@ import { HomePage } from "@pages/home/HomePage.jsx";
 import { Error } from "@pages/error/Error.jsx";
 import { Layout } from "@shared/components/layout/Layout.jsx";
 import "./index.css";
+import { AuthPage } from "./modules/auth/AuthPage";
 const router = createBrowserRouter([
   {
-    path: '',
+    path: "",
     element: <Layout />,
     children: [
       {
@@ -25,15 +26,15 @@ const router = createBrowserRouter([
       },
       {
         path: RouterPath.register,
-        element: <>Register Page</>,
+        element: <AuthPage />,
       },
       {
         path: RouterPath.login,
-        element: <>Login Page</>,
-      }
+        element: <AuthPage />,
+      },
     ],
-    errorElement: <Error />
-  }
+    errorElement: <Error />,
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(

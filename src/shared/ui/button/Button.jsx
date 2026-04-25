@@ -8,7 +8,8 @@ export const Button = ({
   size,
   children,
   onClick,
-  ariaLabel
+  ariaLabel,
+  classname,
 }
 ) => {
   const variants = clsx({
@@ -27,7 +28,7 @@ export const Button = ({
     <button 
       type={type} 
       name={name} 
-      className={clsx(style.base,variants,sizes)} 
+      className={clsx(style.base,variants,sizes,classname)} 
       onClick={onClick}
       aria-label={ariaLabel}
     >
