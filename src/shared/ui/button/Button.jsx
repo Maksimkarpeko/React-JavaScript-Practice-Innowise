@@ -9,8 +9,7 @@ export const Button = ({
   children,
   onClick,
   ariaLabel
-}
-) => {
+}) => {
   const variants = clsx({
     [style.primary]: variant === "primary",
     [style.secondary]: variant === "secondary",

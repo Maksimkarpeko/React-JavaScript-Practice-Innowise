@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { Button } from "@shared/ui/button/Button";
 import { RouterPath } from "@shared/constants/routerPath";
-import { LOCALIZATION } from "@shared/constants/localization";
+import { APP_TEXT } from "@shared/constants/appText";
 import style from "./HeaderStyle.module.css";
 import { NavigateBar } from "./NavigationBar";
 
@@ -23,7 +23,7 @@ export const Header = () => {
               onClick={()=>navigate({pathname:RouterPath.register,search:"?mode=register"})}
               ariaLabel="navigate to register page"
             >
-              {LOCALIZATION.en.header.registration}
+              {APP_TEXT.header.registration}
             </Button>
             <Button 
               name="button"
@@ -32,7 +32,7 @@ export const Header = () => {
               onClick={()=>navigate({pathname:RouterPath.login,search:"?mode=Login"})}
               ariaLabel="navigate to login page"
             >
-              {LOCALIZATION.en.header.login}
+              {APP_TEXT.header.login}
             </Button>
           </div>
         )
