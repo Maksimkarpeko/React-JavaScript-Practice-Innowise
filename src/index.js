@@ -1,5 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { RouterPath } from "@shared/constants/routerPath.js";
 import { HomePage } from "@pages/home/HomePage.jsx";
@@ -7,6 +8,8 @@ import { Error } from "@pages/error/Error.jsx";
 import { Layout } from "@shared/components/layout/Layout.jsx";
 import "./index.css";
 import { AuthPage } from "./modules/auth/AuthPage";
+import { store } from "./app/redux/store";
+
 const router = createBrowserRouter([
   {
     path: "",
@@ -37,8 +40,12 @@ const router = createBrowserRouter([
   },
 ]);
 
+
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>,
 );

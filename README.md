@@ -13,8 +13,8 @@ Follow these steps to get the project up and running on your local machine:
    npm install
 
 3. Run the development server
-Bash
-npm run dev
+   Bash
+   npm run dev
 
 # Tech Stack
 
@@ -26,3 +26,8 @@ CSS Modules + clsx – Component-scoped styling and conditional class management
 
 npm run dev – Starts the development server.
 npm run build – Bundles the application for production.
+
+# Test user
+
+username = emilys
+password = emilys

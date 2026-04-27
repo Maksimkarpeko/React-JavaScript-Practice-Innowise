@@ -46,7 +46,7 @@ module.exports = {
   resolve: {
     alias: {
       "@app": path.resolve(__dirname, "src/app/"),
-      "@modules": path.resolve(__dirname, "src/module/"),
+      "@modules": path.resolve(__dirname, "src/modules/"),
       "@pages": path.resolve(__dirname, "src/pages/"),
       "@shared": path.resolve(__dirname, "src/shared/"),
       "@": path.resolve(__dirname, "src/"),

@@ -7,10 +7,11 @@
   align-items: center;
 
 }
+
 .authForm{
   background: #fff;
-  width: 25%;
-  height: 60%;
+  width: 30%;
+  height: 87%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,28 +19,39 @@
   border-radius: 20px;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)
 }
+
+.errorContainer{
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+.inputContainer{
+  width: 80%;
+}
+
+.authLink {
+  color: blue;
+}
+
+.authParagraph {
+  margin-bottom: 15px;
+}
+
 .authFormTitle{
   font-size: 40px;
 }
+
 .authFormSubTitle{
   font-size: 20px;
   color: #7a7979;
   margin-bottom: 40px;
 }
 
-.input {
-  width: 100%;
-  padding: 10px 0 10px 15px;
-  font-size: 20px;
-  border: 1px solid #d4d4d4;
-  border-radius: 8px;
-  margin-bottom: 25px;
-}
-
-
 .authFormButtonText {
   font-size: 16px;
 }
+
 .addButton {
   padding: 0px 100px;
 }
+
