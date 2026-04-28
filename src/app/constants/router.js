@@ -4,6 +4,8 @@ import { HomePage } from "@pages/home";
 import { Error } from "@pages/error";
 import { Layout } from "@app/components";
 import { AuthPage } from "@pages/authPage";
+import { DevelopersPage } from "@pages/developers";
+import { DeveloperProfilePage } from "@pages/developerProfile";
 
 export const router = createBrowserRouter([
   {
@@ -19,8 +21,12 @@ export const router = createBrowserRouter([
         element: <>Dashboards Page</>,
       },
       {
-        path: RouterPath.document,
-        element: <>Document Page</>,
+        path: RouterPath.developers,
+        element: <DevelopersPage />,
+      },
+      {
+        path: RouterPath.developersProfile,
+        element: <DeveloperProfilePage />,
       },
       {
         path: RouterPath.register,

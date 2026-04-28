@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router";
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,6 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { TableFooter, TablePagination, TablePaginationActions } from "@mui/material";
+import { RouterPath } from "@shared/constants";
 import { useGetUsersQuery } from "./api/userApi"
 import style from "./Developers.module.css"
 
@@ -38,6 +40,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export const DevelopersPage = () => {
+  const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const [limitPerPage, setRowsPerPage] = useState(5);
   const skip = page * limitPerPage;
@@ -46,6 +49,9 @@ export const DevelopersPage = () => {
   if (isLoading) return <p>Loading...</p>
   
   const {users, total} = data;
+  const handleDeveloperClick = (id) => {
+    navigate(`/${RouterPath.developers}/${id}`)
+  }
   const handleChangePage = (
     event,
     newPage
@@ -80,7 +86,12 @@ export const DevelopersPage = () => {
         <TableBody>
           {users.map((user) => (
             <StyledTableRow key={user.id}>
-              <StyledTableCell component="th" scope="row" className={style.userName}>
+              <StyledTableCell 
+                component="th" 
+                scope="row" 
+                className={style.userName} 
+                onClick={()=>handleDeveloperClick(user.id)}
+              >
                 {`${user.firstName} ${user.lastName}`}
               </StyledTableCell>
               <StyledTableCell align="center">

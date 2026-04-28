@@ -5,10 +5,13 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://dummyjson.com/" }),
   endpoints: (build) => ({
     getUsers: build.query({
-      query: ({ limit = "", skip}) =>
+      query: ({ limit = "", skip }) =>
         `users?${limit && `limit=${limit}`}&skip=${skip}`,
+    }),
+    getUserById: build.query({
+      query: (id) => `users/${id}`,
     }),
   }),
 });
 
-export const { useGetUsersQuery } = userApi;
+export const { useGetUsersQuery, useGetUserByIdQuery } = userApi;

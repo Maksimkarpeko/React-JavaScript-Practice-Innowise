@@ -3,7 +3,8 @@ export const RouterPath = {
   dashboards: "dashboards",
   register: "register",
   login: "login",
-  document: "developers",
+  developers: "developers",
+  developersProfile: "developers/:id",
   searchModeRegister: "?mode=register",
   searchModeLogin: "?mode=login",
 };
