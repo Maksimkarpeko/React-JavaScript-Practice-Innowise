@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import { RouterPath } from "@shared/constants/routerPath.js";
 import { HomePage } from "@pages/home/HomePage.jsx";
 import { Error } from "@pages/error/Error.jsx";
+import { DevelopersPage } from "@pages/developers/DevelopersPage";
 import { Layout } from "@shared/components/layout/Layout.jsx";
 import "./index.css";
 import { AuthPage } from "./modules/auth/AuthPage";
@@ -24,8 +25,8 @@ const router = createBrowserRouter([
         element: <>Dashboards Page</>,
       },
       {
-        path: RouterPath.document,
-        element: <>Document Page</>,
+        path: RouterPath.developers,
+        element: <DevelopersPage />,
       },
       {
         path: RouterPath.register,
@@ -39,8 +40,6 @@ const router = createBrowserRouter([
     errorElement: <Error />,
   },
 ]);
-
-
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
