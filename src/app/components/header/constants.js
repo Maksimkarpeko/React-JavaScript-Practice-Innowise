@@ -18,8 +18,8 @@ export const navigateList = [
   },
   {
     src: Document,
-    alt: "Document",
-    text: "Documentation",
-    link: RouterPath.document,
+    alt: "Developers",
+    text: "Developers",
+    link: RouterPath.developers,
   },
 ];

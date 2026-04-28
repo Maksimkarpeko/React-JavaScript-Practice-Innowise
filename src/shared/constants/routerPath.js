@@ -3,7 +3,7 @@ export const RouterPath = {
   dashboards: "dashboards",
   register: "register",
   login: "login",
-  document: "document",
+  document: "developers",
   searchModeRegister: "?mode=register",
   searchModeLogin: "?mode=login",
 };

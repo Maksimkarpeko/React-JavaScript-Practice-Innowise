@@ -1,0 +1,20 @@
+.titleContainer {
+  padding: 24px 0 0px 10px;
+}
+
+.titleContainer h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.titleContainer p {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.userName:hover {
+  text-decoration: underline;
+}
