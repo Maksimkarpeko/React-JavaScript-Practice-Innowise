@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import style from "./HeaderStyle.module.css";
 import { navigateList } from "./constants";
 
-export const NavigateBar = () => {
+export const NavigationBar = () => {
   return (
     <nav className={style.navigateContainer}>
       <ul className={style.navigateList}>

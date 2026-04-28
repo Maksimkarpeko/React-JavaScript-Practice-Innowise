@@ -1,7 +1,7 @@
 import home from "@shared/assets/Home.png";
 import Grid from "@shared/assets/Grid.png";
-import Document from "@shared/assets/document.png";
-import { RouterPath } from "@shared/constants/routerPath";
+import Document from "@shared/assets/Document.png";
+import { RouterPath } from "@shared/constants";
 
 export const navigateList = [
   {

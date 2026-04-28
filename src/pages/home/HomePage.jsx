@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router";
-import { Button } from "@shared/ui/button/Button.jsx";
+import { Button } from "@shared/ui";
 import logo from '@shared/assets/LogoXL.svg';
-import { RouterPath } from "@shared/constants/routerPath";
-import { APP_TEXT } from "@shared/constants/appText";
+import { RouterPath, APP_TEXT } from "@shared/constants";
 import style from "./HomeStyle.module.css";
 
 export const HomePage = () => {

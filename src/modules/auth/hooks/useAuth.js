@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { useDispatch } from "react-redux";
-import { RouterPath } from "@shared/constants/routerPath";
-import { setUser } from "./authSlice";
+import { RouterPath } from "@shared/constants";
+import { setUser } from "../store/authSlice";
 
 export const useAuth = (addUser, loginUser) => {
   const [searchParams] = useSearchParams();
@@ -14,7 +14,7 @@ export const useAuth = (addUser, loginUser) => {
   });
   const [commonError, setCommonError] = useState("");
   const [customError, setCustomError] = useState({
-    errorLogin: "",
+    errorUsername: "",
     errorPassword: "",
   });
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ export const useAuth = (addUser, loginUser) => {
     event.preventDefault();
     setCommonError("");
     setCustomError({
-      errorLogin: "",
+      errorUsername: "",
       errorPassword: "",
     });
     if (!value.username && !value.password) {
@@ -35,7 +35,7 @@ export const useAuth = (addUser, loginUser) => {
     if (value.username.length <= 2) {
       setCustomError((prev) => ({
         ...prev,
-        errorLogin: "The username must be more than 2 characters long.",
+        errorUsername: "The username must be more than 2 characters long.",
       }));
       hasError = true;
     }
