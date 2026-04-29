@@ -1,13 +1,13 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQuery } from "@app/redux/config";
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseQuery } from '@app/redux/config';
 
 export const userApi = createApi({
-  reducerPath: "userApi",
-  baseQuery: baseQuery,
+  reducerPath: 'userApi',
+  baseQuery,
   endpoints: (build) => ({
     getUsers: build.query({
       query: ({ limit, skip }) =>
-        `users?${limit && `limit=${limit}`}&skip=${skip}`,
+        `users?${limit && `limit=${limit}`}&skip=${skip}`, //newSeachParams
     }),
     getUserById: build.query({
       query: (id) => `users/${id}`,

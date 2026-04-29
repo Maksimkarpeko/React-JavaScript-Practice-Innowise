@@ -1,10 +1,10 @@
 export const userText = (data) => {
   const fullName = `${data.firstName} ${data.lastName}`;
-  const pronoun = data.gender === "female" ? "she" : "he";
-  const possessive = data.gender === "female" ? "her" : "his";
+  const pronoun = data.gender === 'female' ? 'she' : 'he';
+  const possessive = data.gender === 'female' ? 'her' : 'his';
   return {
-    summaryTitle: "Professional Summary",
-    hobbyTitle: "Hobby & Interests",
+    summaryTitle: 'Professional Summary',
+    hobbyTitle: 'Hobby & Interests',
 
     summaryText: `${fullName} is an experienced ${data.company.title} working in the ${data.company.department}. With a focus on professional growth and expertise in the engineering sector, ${fullName} contributes to the strategic goals of the organization`,
 

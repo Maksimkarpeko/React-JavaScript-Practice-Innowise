@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 import { Button,Input,ErrorMessage, SuccessMessage } from '@shared/ui'
-import { APP_TEXT } from "@shared/constants"
-import { RouterPath } from "@shared/constants"
+import { APP_TEXT } from '@shared/constants'
+import { RouterPath } from '@shared/constants'
 import { ModePath } from '@shared/constants/router-path'
 import { useAddUserMutation, useLoginUserMutation } from '../auth/api/authApi'
 import style from './AuthStyle.module.css'
@@ -21,11 +21,11 @@ export const AuthForm = ({
       isError, 
       isSuccess, 
       error, 
-      isLoading 
+      isLoading,
     }
-  ] = useAddUserMutation();
+  ] = useAddUserMutation(); //перенести
   
-  const [
+  const [_,
     {
       isError: isLoginError,
       isSuccess: isLoginSuccess,
@@ -34,16 +34,17 @@ export const AuthForm = ({
     },
   ] = useLoginUserMutation();
 
-  const typeText = authParams === "login" ? "Login" : "Registration";
+  const typeText = authParams === 'login' ? 'Login' : 'Registration';
   const handelSubmit = authParams === 'login' ? handelLoginSubmit : handelRegistrationSubmit;
-  const subTitle = authParams === "login"  ? APP_TEXT.auth.login.subTitle : APP_TEXT.auth.registration.footerText;
-  const textLink = authParams === "login" ? "Registration" : "Log in";
-  const to = authParams === "login" ? {
-    pathname: "/"+ RouterPath.register,
+  //
+  const subTitle = authParams === 'login'  ? APP_TEXT.auth.login.subTitle : APP_TEXT.auth.registration.footerText;
+  const textLink = authParams === 'login' ? 'Registration' : 'Log in';
+  const to = authParams === 'login' ? {
+    pathname: '/'+ RouterPath.register,
     search: `?mode=${ModePath.modeRegister}`,
   } : {
-    pathname: "/"+RouterPath.login,
-    search:`?mode=${ModePath.modeLogin}`
+    pathname: '/'+RouterPath.login,
+    search:`?mode=${ModePath.modeLogin}`,
   };
 
   return (
@@ -80,9 +81,9 @@ export const AuthForm = ({
         <div className={style.errorContainer}>
           {commonError && <ErrorMessage text={commonError}/>}
           {isError && <ErrorMessage text={error?.data?.message}/>}
-          {((isSuccess && data) || isLoginSuccess) && <SuccessMessage text={"success!"}/>}
+          {((isSuccess && data) || isLoginSuccess) && <SuccessMessage text={'success!'}/>}
           {isLoginError && <ErrorMessage text={loginError?.data?.message}/>}
-          {(isLoginLoading|| isLoading) && "Loading..."}
+          {(isLoginLoading|| isLoading) && 'Loading...'}
         </div>
         <p className={style.authParagraph}>
           {subTitle} <span></span>
@@ -93,7 +94,7 @@ export const AuthForm = ({
         <Button 
           type="submit"
           variant="primary" 
-          ariaLabel={"Submit and navigate to dashboard"}
+          ariaLabel={'Submit and navigate to dashboard'}
           size="medium"
           name="password"
           onClick={handelSubmit}

@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Link } from "react-router";
+import { useState } from 'react';
+import { Link } from 'react-router';
 import { Button } from '@shared/ui'
-import style from "./HeaderStyle.module.css"
-import { navigateList } from "./constants";
+import style from './HeaderStyle.module.css'
+import { navigateList } from './constants';
 
 
 export const SideBar = () => {

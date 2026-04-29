@@ -1,21 +1,21 @@
-import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router";
-import { useDispatch } from "react-redux";
-import { RouterPath } from "@shared/constants";
-import { setUser } from "../store/authSlice";
+import { useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { RouterPath } from '@shared/constants';
+import { setUser } from '../store/authSlice';
 
 export const useAuth = (addUser, loginUser) => {
   const [ searchParams ] = useSearchParams();
-  const authParams = searchParams.get("mode");
+  const authParams = searchParams.get('mode');
   const navigate = useNavigate();
   const [ value, setValue ] = useState({
-    username: "",
-    password: "",
+    username: '',
+    password: '',
   });
-  const [ commonError, setCommonError ] = useState("");
+  const [ commonError, setCommonError ] = useState('');
   const [ customError, setCustomError ] = useState({
-    errorUsername: "",
-    errorPassword: "",
+    errorUsername: '',
+    errorPassword: '',
   });
   const dispatch = useDispatch();
 
@@ -23,19 +23,19 @@ export const useAuth = (addUser, loginUser) => {
     let hasError = false;
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{3,}$/;
     event.preventDefault();
-    setCommonError("");
+    setCommonError('');
     setCustomError({
-      errorUsername: "",
-      errorPassword: "",
-    });
+      errorUsername: '',
+      errorPassword: '',
+    });//Поправить ошибки в один объект съсделать констант  
     if (!value.username && !value.password) {
-      setCommonError("The fields must be filled");
+      setCommonError('The fields must be filled');
       hasError = true;
     }
     if (value.username.length <= 2) {
       setCustomError((prev) => ({
         ...prev,
-        errorUsername: "The username must be more than 2 characters long.",
+        errorUsername: 'The username must be more than 2 characters long.',
       }));
       hasError = true;
     }
@@ -43,7 +43,7 @@ export const useAuth = (addUser, loginUser) => {
       setCustomError((prev) => ({
         ...prev,
         errorPassword:
-          "The password must contain at least 3 characters, including one capital letter and one digit.",
+          'The password must contain at least 3 characters, including one capital letter and one digit.',
       }));
       hasError = true;
     }
@@ -51,8 +51,8 @@ export const useAuth = (addUser, loginUser) => {
       try {
         const response = await addUser(value).unwrap();
         dispatch(setUser({ user: response }));
-        localStorage.setItem("user", JSON.stringify(response));
-        navigate("/" + RouterPath.dashboards);
+        localStorage.setItem('user', JSON.stringify(response));
+        navigate('/' + RouterPath.dashboards);
       } catch (error) {
         console.error(error);
       }
@@ -64,17 +64,18 @@ export const useAuth = (addUser, loginUser) => {
     try {
       const response = await loginUser(value).unwrap();
       dispatch(setUser({ user: response }));
-      localStorage.setItem("user", JSON.stringify(response));
-      navigate("/" + RouterPath.dashboards);
+      localStorage.setItem('user', JSON.stringify(response));
+      navigate('/' + RouterPath.dashboards);
     } catch (error) {
       console.error(error);
     }
   };
+  //Переделать ошибки на onChange
   const handelOnChange = (event) => {
     const { name, value: inputValue } = event.target;
     setValue((prev) => ({
       ...prev,
-      [name === "username" ? "username" : "password"]: inputValue,
+      [name === 'username' ? 'username' : 'password']: inputValue, //Убрать проверку
     }));
   };
 

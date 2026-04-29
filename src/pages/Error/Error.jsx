@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
 import error from '@shared/assets/CatMem.jpg';
-import { Button } from "@shared/ui";
+import { Button } from '@shared/ui';
 import { RouterPath, APP_TEXT } from '@shared/constants';
 import style from './ErrorStyle.module.css';
 

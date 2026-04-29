@@ -1,8 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
-
+import { createSlice } from '@reduxjs/toolkit';
+//parse нейминг 
 const helperLocalStorage = () => {
   try {
-    const auth = localStorage.getItem("user");
+    const auth = localStorage.getItem('user');
     const parseAuthData = JSON.parse(auth);
     return parseAuthData;
   } catch (error) {
@@ -11,7 +11,7 @@ const helperLocalStorage = () => {
 };
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState: { user: helperLocalStorage() || null },
   reducers: {
     setUser: (state, action) => {

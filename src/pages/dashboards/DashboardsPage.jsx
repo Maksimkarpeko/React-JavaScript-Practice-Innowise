@@ -1,6 +1,6 @@
-import { Bar,Pie } from "react-chartjs-2";
-import { Spinner } from "@shared/ui"
-import { useGetUsersQuery } from "@modules/users/api/userApi";
+import { Bar,Pie } from 'react-chartjs-2';
+import { Spinner } from '@shared/ui'
+import { useGetUsersQuery } from '@modules/users/api/userApi';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,8 +11,8 @@ import {
   Legend,
   ArcElement,
 } from 'chart.js';
-import style from "./DashboardsPage.module.css"
-import { colorChart } from "./constants/color-chart";
+import style from './DashboardsPage.module.css'
+import { colorChart } from './constants/color-chart';
 
 ChartJS.register(
   CategoryScale,
@@ -29,7 +29,7 @@ const BASE_OPTIONS = {
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
-    legend: { position: "top" },
+    legend: { position: 'top' },
   },
 };
 
@@ -40,20 +40,20 @@ const getOptions = (title) => {
   };
   return options;
 };
-
+const createStats = (arr, selector) => {
+  return arr.reduce((acc, item) => {
+    const key = selector(item) || 'Unknown';
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {});
+};
+//Error
+//Создать функцию для всего чтобы принемал user
 export const DashboardsPage = () => {
   const { data, isLoading } = useGetUsersQuery({ limit: -1, skip: 0 });
 
   if (isLoading) return <Spinner/>
   const {users} = data;
-
-  const createStats = (arr, selector) => {
-    return arr.reduce((acc, item) => {
-      const key = selector(item) || "Unknown";
-      acc[key] = (acc[key] || 0) + 1;
-      return acc;
-    }, {});
-  };
 
   const countCompany = createStats(users, (user) => user?.company.name)
   const yearsUser = createStats(users, (user) => user?.age)
@@ -80,7 +80,7 @@ export const DashboardsPage = () => {
     labels,
     datasets: [
       {
-        label: "User by company",
+        label: 'User by company',
         data: counts,
         backgroundColor: colorChart.company,
       },
@@ -88,13 +88,13 @@ export const DashboardsPage = () => {
   }
   const additionalDataConfig = [
     {
-      type: "Bar",
-      option: getOptions("years"),
+      type: 'Bar',
+      option: getOptions('years'),
       data:{
         labels:labelsStatsYears,
         datasets: [
           {
-            label: "User by years",
+            label: 'User by years',
             data: years,
             backgroundColor: colorChart.years,
           },
@@ -102,13 +102,13 @@ export const DashboardsPage = () => {
       }
     },
     {
-      type: "Pie",
-      option: getOptions("gender"),
+      type: 'Pie',
+      option: getOptions('gender'),
       data:{
         labels: labelsStatsGender,
         datasets: [
           {
-            label: "User by gender",
+            label: 'User by gender',
             data: gender,
             backgroundColor: [
               colorChart.female,
@@ -124,13 +124,13 @@ export const DashboardsPage = () => {
     },
 
     {
-      type: "Bar",
-      option: getOptions("location"),
+      type: 'Bar',
+      option: getOptions('location'),
       data:{
         labels:labelsStatsLocation,
         datasets: [
           {
-            label: "User by location",
+            label: 'User by location',
             data: location,
             backgroundColor: colorChart.location,
           },
@@ -139,13 +139,13 @@ export const DashboardsPage = () => {
       
     },
     {
-      type: "Bar",
-      option: getOptions("specialization"),
+      type: 'Bar',
+      option: getOptions('specialization'),
       data: {
         labels: labelsStatsSpecialization,
         datasets: [
           {
-            label: "User by specialization",
+            label: 'User by specialization',
             data: specialization,
             backgroundColor: colorChart.specialization,
           },
@@ -163,12 +163,15 @@ export const DashboardsPage = () => {
       </div>
       <div className={style.dashboardContainer}>
         <div className={style.mainChart}>
-          <Bar  options={getOptions("Company")} data={dataDashboards}/>
+          <Bar  options={getOptions('Company')} data={dataDashboards}/>
         </div>
         <div className={style.additionalCharts}>
           {additionalDataConfig.map(item=>(
             <div className={style.additionalChart} key={item.labels}>
-              {item.type === 'Bar' ? <Bar  options={item.option} data={item.data}/> : <Pie options={item.option} data={item.data} />}
+              {item.type === 'Bar' ? 
+                <Bar  options={item.option} data={item.data}/> : 
+                <Pie options={item.option} data={item.data} />
+              }
             </div>
           ))}
         </div>

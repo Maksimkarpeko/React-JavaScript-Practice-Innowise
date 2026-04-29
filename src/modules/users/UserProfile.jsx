@@ -1,24 +1,27 @@
-import { useParams } from "react-router"
-import { CustomMap,ErrorMessage,Spinner } from "@shared/ui";
-import { useGetUserByIdQuery } from "./api/userApi";
-import style from "./UserProfile.module.css"
-import { userText } from "./configs/userText";
+import { useParams } from 'react-router'
+import { CustomMap,ErrorMessage,Spinner } from '@shared/ui';
+import { useGetUserByIdQuery } from './api/userApi';
+import style from './UserProfile.module.css'
+import { userText } from './configs/userText';
 
 
+//hendler проверить.
+//Неймиг и стили тоже  '' 
 export const UserProfilePage = () => {
   const { id } = useParams();
 
   const { data, isLoading, isError, error } = useGetUserByIdQuery(id);
 
   if ( isLoading ) return <Spinner/>
-
+  // нейминг
   const string = userText(data);
+  // проверка 
   const { lat:latHome, lng:lngHome } = data.address.coordinates;
   const { lat:latCompany, lng:lngCompany } = data.company.address.coordinates;
-  
+  //error?.
   return (
     <div className={style.developerContainer}>
-      {isError ? <ErrorMessage text={error.data.message}/>: 
+      {isError ? <ErrorMessage text={error.data.message}/> : 
         <>
           <div className={style.developerBiography}>
             <h1>{`${data.firstName} ${data.lastName}`}</h1>
@@ -26,7 +29,7 @@ export const UserProfilePage = () => {
               <p className={style.developerText}>
                 <b>Role</b>: {`${data.company.department} ${data.company.title}`} <br />
                 <b>Gender</b>: {`${data.gender}`} <br />
-                <b>Age</b>: {`${data.age} ${data.age === 1 ? "years" : "year"}`} <br />
+                <b>Age</b>: {`${data.age} ${data.age === 1 ? 'years' : 'year'}поправить`} <br /> 
                 <b>University</b>: {`${data.university}`}
               </p>
             </div>

@@ -1,4 +1,4 @@
-import style from "./InputStyle.module.css"
+import style from './InputStyle.module.css'
 
 export const Input = ({
   type,

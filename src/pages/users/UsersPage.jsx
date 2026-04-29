@@ -1,5 +1,5 @@
-import { useCallback, useState } from "react"
-import { useNavigate } from "react-router";
+import { useCallback, useState } from 'react'
+import { useNavigate } from 'react-router';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,12 +8,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { TableFooter, TablePagination, TablePaginationActions } from "@mui/material";
-import { useGetUsersQuery } from "@modules/users/api/userApi"
-import { RouterPath } from "@shared/constants";
-import { Spinner } from "@shared/ui";
-import style from "./UsersPage.module.css"
-import { userTableTitle } from "./constants/user-table-title";
+import { TableFooter, TablePagination, TablePaginationActions } from '@mui/material';
+import { useGetUsersQuery } from '@modules/users/api/userApi'
+import { RouterPath } from '@shared/constants';
+import { Spinner } from '@shared/ui';
+import style from './UsersPage.module.css'
+import { userTableTitle } from './constants/user-table-title';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -26,7 +26,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     color: theme.palette.common.black
   },
   [`&.${style.userName}`]: {
-    color: "var(--user-blue-name)",
+    color: 'var(--user-blue-name)',
     fontWeight: 600,
     cursor: 'pointer',
   }
@@ -72,7 +72,8 @@ export const UsersPage = () => {
           <TableHead>
             <TableRow>
               {userTableTitle.map((item) => (
-                <>
+                <> 
+                  {/* исправить */}
                   <StyledTableCell align="center" key={item}>{item}</StyledTableCell>
                 </>
               ))}

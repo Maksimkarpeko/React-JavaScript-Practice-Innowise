@@ -1,2 +1,2 @@
-export { CustomMap } from "./CustomMap";
+export { CustomMap } from './CustomMap';
 

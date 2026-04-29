@@ -1,6 +1,6 @@
-import { AuthForm } from "@modules/auth";
-import { useAuth } from "@modules/auth/hooks/useAuth"
-import { useAddUserMutation,useLoginUserMutation } from "@modules/auth/api/authApi";
+import { AuthForm } from '@modules/auth';
+import { useAuth } from '@modules/auth/hooks/useAuth'
+import { useAddUserMutation,useLoginUserMutation } from '@modules/auth/api/authApi';
 
 export const AuthPage = () => {
   const [ addUser ] = useAddUserMutation();

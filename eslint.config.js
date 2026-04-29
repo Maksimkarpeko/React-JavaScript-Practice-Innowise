@@ -30,16 +30,19 @@ export default [
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
 
-      'react/prop-types': 'off', 
+      quotes: ['error', 'single', { avoidEscape: true }],
+      'jsx-quotes': ['error', 'prefer-double'],
+      indent: ['error', 2, { SwitchCase: 1 }],
+      'react/prop-types': 'off',
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
       ],
-      'no-unused-vars': 'warn', 
+      'no-unused-vars': 'warn',
       'prefer-const': 'error',
     },
     settings: {
-      react: { version: 'detect' }, 
+      react: { version: 'detect' },
     },
   },
 ];

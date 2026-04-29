@@ -1,7 +1,7 @@
-import { Link } from "react-router";
-import style from "./HeaderStyle.module.css";
-import { navigateList } from "./constants";
-import { SideBar } from "./SideBar";
+import { Link } from 'react-router';
+import style from './HeaderStyle.module.css';
+import { navigateList } from './constants';
+import { SideBar } from './SideBar';
 
 export const NavigationBar = () => {
   return (

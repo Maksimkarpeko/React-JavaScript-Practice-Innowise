@@ -1,8 +1,8 @@
-import clsx from "clsx";
-import style from './ButtonStyle.module';
+import clsx from 'clsx';
+import style from './ButtonStyle.module.css';
 
 export const Button = ({
-  type = "button",
+  type = 'button',
   name,
   variant,
   size,
@@ -10,17 +10,16 @@ export const Button = ({
   onClick,
   ariaLabel,
   classname,
-}
-) => {
+}) => {
   const variants = clsx({
-    [style.primary]: variant === "primary",
-    [style.secondary]: variant === "secondary",
+    [style.primary]: variant === 'primary',
+    [style.secondary]: variant === 'secondary',
   })
   
   const sizes = clsx({
-    [style.small]: size === "small",
-    [style.medium]: size === "medium",
-    [style.large]: size === "large",
+    [style.small]: size === 'small',
+    [style.medium]: size === 'medium',
+    [style.large]: size === 'large',
   })
   
 
