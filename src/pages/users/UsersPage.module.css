@@ -8,7 +8,9 @@
   color: #111827;
   margin: 0;
 }
-
+.usernameColor {
+  color: var(--user-blue-name);
+}
 .titleContainer p {
   font-size: 14px;
   color: #6b7280;

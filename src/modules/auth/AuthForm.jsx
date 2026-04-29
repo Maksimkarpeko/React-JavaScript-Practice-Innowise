@@ -1,8 +1,9 @@
 import { Link } from 'react-router'
 import { Button,Input,ErrorMessage, SuccessMessage } from '@shared/ui'
-import { useAddUserMutation, useLoginUserMutation } from '../auth/api/authApi'
 import { APP_TEXT } from "@shared/constants"
 import { RouterPath } from "@shared/constants"
+import { ModePath } from '@shared/constants/router-path'
+import { useAddUserMutation, useLoginUserMutation } from '../auth/api/authApi'
 import style from './AuthStyle.module.css'
 
 export const AuthForm = ({
@@ -33,24 +34,22 @@ export const AuthForm = ({
     },
   ] = useLoginUserMutation();
 
-  const title = authParams === "login" ? "Login" : "Registration";
-  const buttonText = authParams === "login" ? "Login"  : "Registration";
+  const typeText = authParams === "login" ? "Login" : "Registration";
   const handelSubmit = authParams === 'login' ? handelLoginSubmit : handelRegistrationSubmit;
   const subTitle = authParams === "login"  ? APP_TEXT.auth.login.subTitle : APP_TEXT.auth.registration.footerText;
-  const footerText = authParams === "login" ? APP_TEXT.auth.login.subTitle : APP_TEXT.auth.registration.footerText;
   const textLink = authParams === "login" ? "Registration" : "Log in";
   const to = authParams === "login" ? {
-    pathname:"/"+ RouterPath.register,
-    search:"?mode=registration",
+    pathname: "/"+ RouterPath.register,
+    search: `?mode=${ModePath.modeRegister}`,
   } : {
-    pathname:"/"+RouterPath.login,
-    search:"?mode=login"
+    pathname: "/"+RouterPath.login,
+    search:`?mode=${ModePath.modeLogin}`
   };
 
   return (
     <div className={style.authContainer}>
       <form action="#" className={style.authForm}>
-        <h1 className={style.authFormTitle}>{title}</h1>
+        <h1 className={style.authFormTitle}>{typeText}</h1>
         <p className={style.authFormSubTitle}>{subTitle}</p>
         <div className={style.inputContainer}>
           <p>Login</p>
@@ -86,11 +85,8 @@ export const AuthForm = ({
           {(isLoginLoading|| isLoading) && "Loading..."}
         </div>
         <p className={style.authParagraph}>
-          {footerText} <span></span>
-          <Link 
-          to={to}  
-          className={style.authLink}
-          >
+          {subTitle} <span></span>
+          <Link to={to} className={style.authLink}>
             {textLink}
           </Link>
         </p>
@@ -103,7 +99,7 @@ export const AuthForm = ({
           onClick={handelSubmit}
           className={style.addButton}
         >
-          <span className={style.authFormButtonText}>{buttonText}</span>
+          <span className={style.authFormButtonText}>{typeText}</span>
         </Button>
       </form>
     </div>

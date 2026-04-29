@@ -1,2 +1,2 @@
-export { APP_TEXT } from "./appText";
-export { RouterPath } from "./routerPath";
+export { APP_TEXT } from "./app-text";
+export { RouterPath } from "./router-path";

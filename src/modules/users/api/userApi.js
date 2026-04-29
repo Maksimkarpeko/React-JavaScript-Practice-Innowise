@@ -1,11 +1,12 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseQuery } from "@app/redux/config";
 
 export const userApi = createApi({
   reducerPath: "userApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://dummyjson.com/" }),
+  baseQuery: baseQuery,
   endpoints: (build) => ({
     getUsers: build.query({
-      query: ({ limit = "", skip }) =>
+      query: ({ limit, skip }) =>
         `users?${limit && `limit=${limit}`}&skip=${skip}`,
     }),
     getUserById: build.query({

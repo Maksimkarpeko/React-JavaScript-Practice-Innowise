@@ -5,15 +5,15 @@ import { RouterPath } from "@shared/constants";
 import { setUser } from "../store/authSlice";
 
 export const useAuth = (addUser, loginUser) => {
-  const [searchParams] = useSearchParams();
+  const [ searchParams ] = useSearchParams();
   const authParams = searchParams.get("mode");
   const navigate = useNavigate();
-  const [value, setValue] = useState({
+  const [ value, setValue ] = useState({
     username: "",
     password: "",
   });
-  const [commonError, setCommonError] = useState("");
-  const [customError, setCustomError] = useState({
+  const [ commonError, setCommonError ] = useState("");
+  const [ customError, setCustomError ] = useState({
     errorUsername: "",
     errorPassword: "",
   });

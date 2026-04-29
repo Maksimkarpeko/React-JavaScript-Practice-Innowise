@@ -1,5 +1,6 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import style from "./CustomMap.module.css"
+
 export const CustomMap = ({coords}) => {
 
   const position = coords || [52.4101, 30.9318];

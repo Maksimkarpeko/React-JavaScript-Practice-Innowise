@@ -17,13 +17,13 @@ export const AuthPage = () => {
 
   return (
     <AuthForm 
-      authParams = {authParams}
-      handelLoginSubmit = {handelLoginSubmit}
-      handelRegistrationSubmit = {handelRegistrationSubmit}
+      authParams={authParams}
+      handelLoginSubmit={handelLoginSubmit}
+      handelRegistrationSubmit={handelRegistrationSubmit}
       commonError={commonError}
-      customError ={customError}
-      value = {value}
-      handelOnChange = {handelOnChange}
+      customError={customError}
+      value={value}
+      handelOnChange={handelOnChange}
     />
   )
 }

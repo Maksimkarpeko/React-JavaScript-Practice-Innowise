@@ -3,9 +3,9 @@ import { RouterPath } from "@shared/constants";
 import { HomePage } from "@pages/home";
 import { Error } from "@pages/error";
 import { Layout } from "@app/components";
-import { AuthPage } from "@pages/authPage";
-import { DevelopersPage } from "@pages/developers";
-import { DeveloperProfilePage } from "@pages/developerProfile";
+import { AuthPage } from "@pages/auth";
+import { UsersPage } from "@pages/users";
+import { UserProfilePage } from "@modules/users";
 
 export const router = createBrowserRouter([
   {
@@ -21,12 +21,12 @@ export const router = createBrowserRouter([
         element: <>Dashboards Page</>,
       },
       {
-        path: RouterPath.developers,
-        element: <DevelopersPage />,
+        path: RouterPath.users,
+        element: <UsersPage />,
       },
       {
-        path: RouterPath.developersProfile,
-        element: <DeveloperProfilePage />,
+        path: RouterPath.userProfile,
+        element: <UserProfilePage />,
       },
       {
         path: RouterPath.register,

@@ -45,3 +45,36 @@
   cursor: pointer;
   border-bottom:1px solid #3874FF ;
 }
+
+.sideBarContainer{
+  display: none;
+}
+
+@media (max-width:831px) {
+  .headerLeftSide {
+    display: none;
+  }
+  .header {
+      grid-template-columns: 1fr 1fr;
+  }
+  .navigateContainer {
+    display: none;
+  }
+  .sideBarContainer {
+    display: block;
+    width: 50%;  
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: sticky;
+    top: 0;
+    left: 0;
+  }
+}
+@media (max-width:500px) {
+  .headerAuthContainer{
+    flex-direction: column;
+  }
+}
