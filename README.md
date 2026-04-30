@@ -18,21 +18,20 @@ Follow these steps to get the project up and running on your local machine:
 
 # Tech Stack
 
-React 19 – UI Library
-React Router - Client-side routing and layout management
-CSS Modules + clsx – Component-scoped styling and conditional class management.
-Redux toolkit - Efficient global state management
-RTK Query - Advanced data fetching and caching layer
-Leaflet - An open-source JavaScript library for mobile-friendly interactive maps
-
+1.  React 19 – UI Library
+2.  React Router - Client-side routing and layout management
+3.  CSS Modules + clsx – Component-scoped styling and conditional class management.
+4.  Redux toolkit - Efficient global state management
+5.  RTK Query - Advanced data fetching and caching layer
+6.  Leaflet - An open-source JavaScript library for mobile-friendly interactive maps
 
 # Available Scripts
 
-npm run dev – Starts the development server.
-npm run build – Bundles the application for production.
-npx eslint . --fix – Automatically detects and resolves fixable code style violations and syntax issues across the entire project 
+1.  npm run dev – Starts the development server.
+2.  npm run build – Bundles the application for production.
+3.  npx eslint . --fix – Automatically detects and resolves fixable code style violations and syntax issues across the entire project
 
 # Test user
 
-username = emilys
-password = emilys
+1. username = emilys
+2. password = emilys
