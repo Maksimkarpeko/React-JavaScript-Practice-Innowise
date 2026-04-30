@@ -9,11 +9,13 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { TableFooter, TablePagination, TablePaginationActions } from '@mui/material';
-import { useGetUsersQuery } from '@modules/users/api/userApi'
+import { useGetUsersQuery } from '@modules/users/api/userApi';
 import { RouterPath } from '@shared/constants';
-import { Spinner } from '@shared/ui';
-import style from './UsersPage.module.css'
+import { Spinner, ErrorMessage, UnauthorizedMessage } from '@shared/ui';
+import { getUserFromLocalStorage } from '@modules/auth';
+import style from './UsersPage.module.css';
 import { userTableTitle } from './constants/user-table-title';
+
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -29,7 +31,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     color: 'var(--user-blue-name)',
     fontWeight: 600,
     cursor: 'pointer',
-  }
+  },
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -43,16 +45,20 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export const UsersPage = () => {
   const navigate = useNavigate();
-  const [ page, setPage ] = useState(0);
-  const [ rowsPerPage, setRowsPerPage ] = useState(5);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const getCurrentUser = getUserFromLocalStorage();
+
   const skip = page * rowsPerPage;
-  const { data, isLoading } = useGetUsersQuery({ limit: rowsPerPage, skip });
+  const { data, isLoading, isError, error } = useGetUsersQuery({ limit: rowsPerPage, skip });
 
   const handleDeveloperClick = useCallback((id) => {
-    navigate(`/${RouterPath.users}/${id}`)
-  },[ navigate ])
+    navigate(`/${RouterPath.users}/${id}`);
+  },[ navigate ]);
 
+  if (!getCurrentUser) return <UnauthorizedMessage text={'You need to register or log in'}/> 
   if (isLoading) return <Spinner/>
+  if (isError) return <ErrorMessage message = {error}/>
 
   const { users, total } = data;
   const handleChangePage = (_, newPage) => setPage(newPage);
@@ -67,16 +73,11 @@ export const UsersPage = () => {
         <h1>List of users</h1>
         <p>Detailed directory of engineering personnel and expertise</p>
       </div>
-      <TableContainer component={Paper} sx={{ maxHeight: 'calc(100vh - 150px)' }}>
+      <TableContainer component={Paper} sx={{ maxHeight: 'calc(100vh - 150px)', marginLeft:'20px',marginTop: '10px', width:'97%'}}>
         <Table sx={{ minWidth: 600 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              {userTableTitle.map((item) => (
-                <> 
-                  {/* исправить */}
-                  <StyledTableCell align="center" key={item}>{item}</StyledTableCell>
-                </>
-              ))}
+              {userTableTitle.map((item) => (<StyledTableCell align="center" key={item}>{item}</StyledTableCell>))}
             </TableRow>
           </TableHead>
           <TableBody>

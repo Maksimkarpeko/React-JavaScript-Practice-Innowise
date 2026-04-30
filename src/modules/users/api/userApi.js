@@ -6,8 +6,10 @@ export const userApi = createApi({
   baseQuery,
   endpoints: (build) => ({
     getUsers: build.query({
-      query: ({ limit, skip }) =>
-        `users?${limit && `limit=${limit}`}&skip=${skip}`, //newSeachParams
+      query: ({ limit, skip }) => ({
+        url: 'user',
+        params: { limit, skip },
+      }),
     }),
     getUserById: build.query({
       query: (id) => `users/${id}`,

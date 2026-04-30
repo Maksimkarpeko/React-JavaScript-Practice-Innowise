@@ -3,7 +3,7 @@ import { baseQuery } from '@app/redux/config';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: baseQuery,
+  baseQuery,
   endpoints: (build) => ({
     loginUser: build.mutation({
       query: (body) => ({

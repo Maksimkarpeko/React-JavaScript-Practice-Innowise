@@ -2,8 +2,7 @@ export const APP_TEXT = {
   home: {
     title: 'Welcome to the HR WebSite',
     description:
-      'Monitor workforce engagement and track key personnel metrics across all departments.',
-    goToDashboard: 'To learn more',
+      'Monitor workforce engagement and track key personnel metrics across all departments. ',
   },
   error: {
     unknown: "I don't know what happened",
@@ -16,7 +15,7 @@ export const APP_TEXT = {
   auth: {
     login: {
       subTitle: 'Log in to your account',
-      footerText: "If you don't have registration account",
+      footerText: "If you don't have an account",
     },
     registration: {
       subTitle: 'Create your new account',

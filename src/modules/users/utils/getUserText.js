@@ -1,4 +1,4 @@
-export const userText = (data) => {
+export const getUserText = (data) => {
   const fullName = `${data.firstName} ${data.lastName}`;
   const pronoun = data.gender === 'female' ? 'she' : 'he';
   const possessive = data.gender === 'female' ? 'her' : 'his';

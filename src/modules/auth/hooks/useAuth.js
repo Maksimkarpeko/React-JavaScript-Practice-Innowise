@@ -3,64 +3,51 @@ import { useNavigate, useSearchParams } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { RouterPath } from '@shared/constants';
 import { setUser } from '../store/authSlice';
+import { validationConfig } from '../config/validation-config';
+import { useAddUserMutation, useLoginUserMutation } from '../api/authApi';
 
-export const useAuth = (addUser, loginUser) => {
-  const [ searchParams ] = useSearchParams();
+export const useAuth = () => {
+  const [searchParams] = useSearchParams();
   const authParams = searchParams.get('mode');
+  const [addUser] = useAddUserMutation();
+  const [loginUser] = useLoginUserMutation();
   const navigate = useNavigate();
-  const [ value, setValue ] = useState({
+  const dispatch = useDispatch();
+
+  const [value, setValue] = useState({
     username: '',
     password: '',
   });
-  const [ commonError, setCommonError ] = useState('');
-  const [ customError, setCustomError ] = useState({
-    errorUsername: '',
-    errorPassword: '',
-  });
-  const dispatch = useDispatch();
+  const [errors, setErrors] = useState(validationConfig);
 
-  const handelRegistrationSubmit = async (event) => {
-    let hasError = false;
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{3,}$/;
+  const isFormInvalid =
+    Object.values(errors).some((fieldRules) =>
+      Object.values(fieldRules).some((rule) => rule.isAction),
+    ) ||
+    !value.username.trim() ||
+    !value.password.trim();
+
+  const handleRegistrationSubmit = async (event) => {
     event.preventDefault();
-    setCommonError('');
-    setCustomError({
-      errorUsername: '',
-      errorPassword: '',
-    });//Поправить ошибки в один объект съсделать констант  
-    if (!value.username && !value.password) {
-      setCommonError('The fields must be filled');
-      hasError = true;
+
+    if (isFormInvalid) {
+      console.error('Attempt to send invalid form');
+      return;
     }
-    if (value.username.length <= 2) {
-      setCustomError((prev) => ({
-        ...prev,
-        errorUsername: 'The username must be more than 2 characters long.',
-      }));
-      hasError = true;
-    }
-    if (!passwordRegex.test(value.password)) {
-      setCustomError((prev) => ({
-        ...prev,
-        errorPassword:
-          'The password must contain at least 3 characters, including one capital letter and one digit.',
-      }));
-      hasError = true;
-    }
-    if (!hasError) {
-      try {
-        const response = await addUser(value).unwrap();
-        dispatch(setUser({ user: response }));
-        localStorage.setItem('user', JSON.stringify(response));
-        navigate('/' + RouterPath.dashboards);
-      } catch (error) {
-        console.error(error);
-      }
+
+    try {
+      const response = await addUser(value).unwrap();
+      dispatch(setUser({ user: response }));
+      localStorage.setItem('user', JSON.stringify(response));
+      navigate('/' + RouterPath.dashboards);
+    } catch (error) {
+      console.error(error);
     }
   };
 
-  const handelLoginSubmit = async (event) => {
+  const handleLoginSubmit = async (event) => {
     event.preventDefault();
+
     try {
       const response = await loginUser(value).unwrap();
       dispatch(setUser({ user: response }));
@@ -70,22 +57,44 @@ export const useAuth = (addUser, loginUser) => {
       console.error(error);
     }
   };
-  //Переделать ошибки на onChange
-  const handelOnChange = (event) => {
+  
+  const handleOnChange = (event) => {
     const { name, value: inputValue } = event.target;
+
     setValue((prev) => ({
       ...prev,
-      [name === 'username' ? 'username' : 'password']: inputValue, //Убрать проверку
+      [name]: inputValue,
     }));
+
+    const fieldConfig = validationConfig[name];
+
+    if (fieldConfig) {
+      const updateFieldConfig = {};
+
+      Object.keys(fieldConfig).forEach((rulesName) => {
+        const rule = fieldConfig[rulesName];
+        const isValid = rule.isValid(inputValue);
+
+        updateFieldConfig[rulesName] = {
+          ...rule,
+          isAction: !isValid,
+        };
+      });
+
+      setErrors((prev) => ({
+        ...prev,
+        [name]: updateFieldConfig,
+      }));
+    }
   };
 
   return [
     authParams,
-    handelLoginSubmit,
-    handelRegistrationSubmit,
-    handelOnChange,
+    handleLoginSubmit,
+    handleRegistrationSubmit,
+    handleOnChange,
     value,
-    commonError,
-    customError,
+    errors,
+    isFormInvalid,
   ];
 };

@@ -55,17 +55,17 @@
   padding: 0px 100px;
 }
 
-
-
-@media (max-width:830px) and (min-width:431px){
+@media (max-width:1020px) and (min-width:431px){
   .authForm {
-    width: 60%;
+    width: 50%;
     height: 95%;
   }
 }
+
 @media (max-width:431px) {
   .authForm {
     width: 70%;
     height: 90%;
   }
 }
+

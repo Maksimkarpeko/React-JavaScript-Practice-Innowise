@@ -10,6 +10,7 @@ export const Button = ({
   onClick,
   ariaLabel,
   classname,
+  isDisabled,
 }) => {
   const variants = clsx({
     [style.primary]: variant === 'primary',
@@ -29,6 +30,7 @@ export const Button = ({
       name={name} 
       className={clsx(style.base,variants,sizes,classname)} 
       onClick={onClick}
+      disabled={isDisabled}
       aria-label={ariaLabel}
     >
       {children}

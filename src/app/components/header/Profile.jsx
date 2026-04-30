@@ -1,7 +1,7 @@
-import user from '@shared/assets/user.png'
-import { Button } from '../button/Button'
-import style from './Profile.module.css'
-//Profile to header
+import user from '@shared/assets/user.png';
+import { Button } from '@shared/ui';
+import style from './HeaderStyle.module.css';
+
 export const Profile = ({username,onClick}) => {
   return (
     <div className={style.profileContainer}>

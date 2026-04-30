@@ -46,6 +46,13 @@
   border-bottom:1px solid #3874FF ;
 }
 
+.active {
+  color: #3874FF;
+  cursor: pointer;
+  border-bottom:1px solid #3874FF ;
+}
+
+
 .sideBarContainer{
   display: none;
 }
@@ -77,4 +84,18 @@
   .headerAuthContainer{
     flex-direction: column;
   }
+}
+
+.profileContainer { 
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-right: 20px;
+}
+
+.profileText {
+  font-size: 20px;
+  padding-top: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
 }

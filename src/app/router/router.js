@@ -5,7 +5,7 @@ import { Error } from '@pages/error';
 import { Layout } from '@app/components';
 import { AuthPage } from '@pages/auth';
 import { UsersPage } from '@pages/users';
-import { UserProfilePage } from '@modules/users';
+import { User } from '@modules/users';
 import { DashboardsPage } from '@pages/dashboards';
 
 export const router = createBrowserRouter([
@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
       },
       {
         path: RouterPath.userProfile,
-        element: <UserProfilePage />,
+        element: <User />,
       },
       {
         path: RouterPath.register,

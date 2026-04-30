@@ -1,9 +1,7 @@
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import style from './CustomMap.module.css'
-//поправить нейминг на понятный
+import style from './LeafletMap.module.css';
 
-export const CustomMap = ({coords}) => {
-
+export const LeafletMap = ({coords}) => {
   const position = coords || [52.4101, 30.9318];
 
   return (
