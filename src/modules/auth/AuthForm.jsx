@@ -1,68 +1,57 @@
 import { Link } from 'react-router';
 import { useCallback } from 'react';
-import { ModePath } from '@shared/constants/router-path';
 import { Button, Input, ErrorMessage, SuccessMessage, Spinner } from '@shared/ui';
 import { APP_TEXT, RouterPath } from '@shared/constants';
-import { useAddUserMutation, useLoginUserMutation } from '../auth/api/authApi';
 import style from './AuthStyle.module.css';
-
 
 
 export const AuthForm = ({
   authParams,
-  handleLoginSubmit,
-  handleRegistrationSubmit,
+  handleSubmit,
   handleOnChange,
   errors,
   value,
   isFormInvalid,
+  addStatuses,
+  loginStatuses,
 }) => {
 
-  const displayError = useCallback((errorName) =>  {
-    if (!errors[errorName]) return null;
+  const displayErrors = useCallback((fieldName) =>  {
+    if (!errors[fieldName]) return null;
 
     const isActionRule = Object
-      .values(errors[errorName])
-      .find((rule) => rule.isAction);
+      .values(errors[fieldName])
+      .filter((rule) => rule.isAction);
 
-    return isActionRule && <ErrorMessage text={isActionRule.message}/>
+    return isActionRule && isActionRule.map((rule) => (<ErrorMessage key={rule} text={rule.message}/>))
   },[errors]);
 
-  const [_,
-    { 
-      isError: isAddError, 
-      isSuccess: isAddSuccess, 
-      error: addError, 
-      isLoading: isAddLoading,
-    }
-  ] = useAddUserMutation();
+  const { 
+    isError: isAddError, 
+    isSuccess: isAddSuccess, 
+    error: addError, 
+    isLoading: isAddLoading,
+  } = addStatuses;
   
-  const [__,
-    {
-      isError: isLoginError,
-      isSuccess: isLoginSuccess,
-      error: loginError,
-      isLoading: isLoginLoading,
-    },
-  ] = useLoginUserMutation();  
+  const {
+    isError: isLoginError,
+    isSuccess: isLoginSuccess,
+    error: loginError,
+    isLoading: isLoginLoading,
+  } = loginStatuses;  
 
-  const typeText = authParams === 'login' ? 'Login' : 'Registration';
-  const handleSubmit = authParams === 'login' ? handleLoginSubmit : handleRegistrationSubmit;
-  const subTitle = authParams === 'login'  ? APP_TEXT.auth.login.subTitle : APP_TEXT.auth.registration.subTitle;
-  const footerText = authParams === 'login' ? APP_TEXT.auth.login.footerText : APP_TEXT.auth.registration.footerText;
-  const textLink = authParams === 'login' ? 'Registration' : 'Log in';
-  const to = authParams === 'login' ? {
-    pathname: '/'+ RouterPath.register,
-    search: `?mode=${ModePath.modeRegister}`,
-  } : {
-    pathname: '/'+RouterPath.login,
-    search:`?mode=${ModePath.modeLogin}`,
-  };
+  const formType = ['login'].includes(authParams) ?  'register' : 'login' ;
 
+  const { subTitle, footerText, formName, linkText, buttonText } =  APP_TEXT.auth[authParams];
+  const to =  {
+    pathname: '/'+ RouterPath[formType],
+    search: new URLSearchParams({mode: RouterPath[formType]}).toString(),
+  }
+  
   return (
     <div className={style.authContainer}>
       <form action="#" className={style.authForm}>
-        <h1 className={style.authFormTitle}>{typeText}</h1>
+        <h1 className={style.authFormTitle}>{formName}</h1>
         <p className={style.authFormSubTitle}>{subTitle}</p>
         <div className={style.inputContainer}>
           <p>Login</p>
@@ -75,7 +64,7 @@ export const AuthForm = ({
             onChange={handleOnChange}
           />
           <div className={style.errorContainer}>
-            {displayError('username')}
+            {displayErrors('username')}
           </div>
         </div>
         <div className={style.inputContainer}>
@@ -89,7 +78,7 @@ export const AuthForm = ({
             onChange={handleOnChange}
           />
           <div className={style.errorContainer}>
-            {displayError('password')}
+            {displayErrors('password')}
           </div>
         </div>
         <div className={style.errorContainer}>
@@ -99,9 +88,9 @@ export const AuthForm = ({
           {(isLoginLoading || isAddLoading) && <Spinner/>}
         </div>
         <p className={style.authParagraph}>
-          {footerText} <span></span>
+          {footerText}
           <Link to={to} className={style.authLink}>
-            {textLink}
+            {linkText}
           </Link>
         </p>
         <Button 
@@ -111,10 +100,9 @@ export const AuthForm = ({
           size="medium"
           name="password"
           onClick={handleSubmit}
-          className={style.addButton}
           isDisabled={isFormInvalid}
         >
-          <span className={style.authFormButtonText}>{typeText}</span>
+          <span className={style.authFormButtonText}>{buttonText}</span>
         </Button>
       </form>
     </div>

@@ -1,4 +1,4 @@
-import { createApi} from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQuery } from '@app/redux/config';
 
 export const authApi = createApi({

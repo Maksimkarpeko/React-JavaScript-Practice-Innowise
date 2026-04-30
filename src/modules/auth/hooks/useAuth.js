@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { RouterPath } from '@shared/constants';
@@ -9,8 +9,8 @@ import { useAddUserMutation, useLoginUserMutation } from '../api/authApi';
 export const useAuth = () => {
   const [searchParams] = useSearchParams();
   const authParams = searchParams.get('mode');
-  const [addUser] = useAddUserMutation();
-  const [loginUser] = useLoginUserMutation();
+  const [addUser, addStatuses] = useAddUserMutation();
+  const [loginUser, loginStatuses] = useLoginUserMutation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -27,37 +27,28 @@ export const useAuth = () => {
     !value.username.trim() ||
     !value.password.trim();
 
-  const handleRegistrationSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = useCallback(
+    async (event) => {
+      event.preventDefault();
 
-    if (isFormInvalid) {
-      console.error('Attempt to send invalid form');
-      return;
-    }
+      if (isFormInvalid) {
+        console.error('Attempt to send invalid form');
+        return;
+      }
 
-    try {
-      const response = await addUser(value).unwrap();
-      dispatch(setUser({ user: response }));
-      localStorage.setItem('user', JSON.stringify(response));
-      navigate('/' + RouterPath.dashboards);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+      try {
+        const apiCall = authParams === 'login' ? loginUser : addUser;
+        const response = await apiCall(value).unwrap();
 
-  const handleLoginSubmit = async (event) => {
-    event.preventDefault();
+        dispatch(setUser({ user: response }));
+        navigate('/' + RouterPath.dashboards);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [addUser, authParams, dispatch, isFormInvalid, loginUser, navigate, value],
+  );
 
-    try {
-      const response = await loginUser(value).unwrap();
-      dispatch(setUser({ user: response }));
-      localStorage.setItem('user', JSON.stringify(response));
-      navigate('/' + RouterPath.dashboards);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  
   const handleOnChange = (event) => {
     const { name, value: inputValue } = event.target;
 
@@ -88,13 +79,14 @@ export const useAuth = () => {
     }
   };
 
-  return [
+  return {
     authParams,
-    handleLoginSubmit,
-    handleRegistrationSubmit,
+    handleSubmit,
     handleOnChange,
     value,
     errors,
     isFormInvalid,
-  ];
+    addStatuses,
+    loginStatuses,
+  };
 };

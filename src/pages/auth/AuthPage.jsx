@@ -3,25 +3,27 @@ import { useAuth } from '@modules/auth/hooks/useAuth';
 
 
 export const AuthPage = () => {
-  const [
+  const {
     authParams,
-    handleLoginSubmit,
-    handleRegistrationSubmit,
+    handleSubmit,
     handleOnChange,
     value,
     errors,
     isFormInvalid,
-  ] = useAuth();
+    addStatuses,
+    loginStatuses
+  } = useAuth();
 
   return (
     <AuthForm 
       authParams={authParams}
-      handleLoginSubmit={handleLoginSubmit}
-      handleRegistrationSubmit={handleRegistrationSubmit}
+      handleSubmit={handleSubmit}
       errors={errors}
       value={value}
       handleOnChange={handleOnChange}
       isFormInvalid={isFormInvalid}
+      addStatuses={addStatuses}
+      loginStatuses={loginStatuses}
     />
   )
 }

@@ -6,8 +6,3 @@ export const RouterPath = {
   users: 'users',
   userProfile: 'users/:id',
 };
-
-export const ModePath = {
-  modeRegister: 'register',
-  modeLogin: 'login',
-};

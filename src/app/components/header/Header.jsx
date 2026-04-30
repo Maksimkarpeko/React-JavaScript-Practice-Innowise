@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@shared/ui';
 import { RouterPath, APP_TEXT } from '@shared/constants';
-import { ModePath } from '@shared/constants/router-path';
 import { logOutUser } from '@modules/auth/store/authSlice';
 import { Profile } from './Profile';
 import style from './HeaderStyle.module.css';
@@ -31,7 +30,10 @@ export const Header = () => {
                 name="button"
                 size="medium" 
                 variant="primary" 
-                onClick={()=>navigate({pathname:RouterPath.register,search:`?mode=${ModePath.modeRegister}`})}
+                onClick={()=>navigate({
+                  pathname:RouterPath.register,
+                  search:new URLSearchParams({mode: RouterPath.register}).toString()
+                })}
                 ariaLabel="navigate to register page"
               >
                 {APP_TEXT.header.registration}
@@ -40,7 +42,10 @@ export const Header = () => {
                 name="button"
                 size="medium" 
                 variant="secondary" 
-                onClick={()=>navigate({pathname:RouterPath.login,search:`?mode=${ModePath.modeLogin}`})}
+                onClick={()=>navigate({
+                  pathname:RouterPath.login,
+                  search:new URLSearchParams({mode: RouterPath.login}).toString()
+                })}
                 ariaLabel="navigate to login page"
               >
                 {APP_TEXT.header.login}

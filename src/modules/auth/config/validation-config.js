@@ -5,7 +5,7 @@ const required = {
 };
 const min = {
   isAction: false,
-  message: 'The username must be more than 2 characters long.',
+  message: 'The field must be more than 2 characters long.',
   isValid: (fieldValue) => fieldValue.length >= 2,
 };
 

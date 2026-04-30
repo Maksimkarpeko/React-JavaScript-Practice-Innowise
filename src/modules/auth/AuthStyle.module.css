@@ -21,14 +21,14 @@
 }
 
 .errorContainer{
-  width: 80%;
-  margin: 0 auto;
   margin-bottom: 10px;
 }
 .inputContainer{
   width: 80%;
 }
-
+.inputContainer p {
+  margin-bottom: 10px;
+}
 .authLink {
   color: blue;
 }
@@ -51,9 +51,6 @@
   font-size: 16px;
 }
 
-.addButton {
-  padding: 0px 100px;
-}
 
 @media (max-width:1020px) and (min-width:431px){
   .authForm {

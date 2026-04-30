@@ -15,11 +15,17 @@ export const APP_TEXT = {
   auth: {
     login: {
       subTitle: 'Log in to your account',
-      footerText: "If you don't have an account",
+      formName: 'Login',
+      linkText: 'Register',
+      buttonText: 'Log in',
+      footerText: "If you don't have an account ",
     },
-    registration: {
+    register: {
       subTitle: 'Create your new account',
-      footerText: 'If you have an account',
+      formName: 'Registration',
+      linkText: 'Log in',
+      buttonText: 'Register',
+      footerText: 'If you have an account ',
     },
   },
 };
