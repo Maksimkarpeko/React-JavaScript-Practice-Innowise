@@ -11,7 +11,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: isProduction ? '[name].[contenthash].js' : '[name].js',
-    publicPath: '/',
+    publicPath: './',
   },
   module: {
     rules: [
@@ -22,7 +22,6 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        // exclude: /node_modules/,
         use: [
           isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
           {
