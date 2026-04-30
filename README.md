@@ -34,4 +34,7 @@ Follow these steps to get the project up and running on your local machine:
 # Test user
 
 1. username = emilys
-2. password = emilys
+2. password = emilyspass
+
+# Deploy project
+https://melodic-sunburst-ce4268.netlify.app/
