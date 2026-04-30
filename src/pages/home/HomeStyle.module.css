@@ -1,0 +1,36 @@
+.homeContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.homeContainerImg {
+  margin-bottom: 10px;
+  width: 5%;
+}
+.homeContainerTitle {
+  font-size: 35px;
+  padding-bottom:10px ;
+}
+.homeContainerText {
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+.homeContainerButtonContainer{
+  display: flex;
+  gap: 20px;
+}
+
+@media (max-width:600px) {
+  .homeContainerTitle {
+    font-size: 30px;
+  }
+  .homeContainerText {
+    font-size: 16px;
+  }
+  .homeContainerImg {
+    width: 10%;
+  }
+}
