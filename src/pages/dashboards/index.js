@@ -1,0 +1,2 @@
+export { DashboardsPage } from './DashboardsPage';
+

@@ -1,0 +1,50 @@
+.userContainer {
+  display: flex;
+  justify-content: space-around;
+}
+.userBiography {
+  width: 60%;
+}
+.userBiography h1, h2 {
+  padding-top: 20px;
+}
+
+.userText {
+  width: 90%;
+  font-size: 19px;
+}
+
+.userDetails {
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #d8d8d8 ;
+  width: 70%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.userMapContainer {
+  background-color: #fff;
+  width: 100%;
+  border: 1px solid #d8d8d8 ;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+.userMapContainer p {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+@media (max-width: 1024px) {
+  .userContainer {
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f7f6;
+  }
+
+  .userDetails, .userMapContainer {
+    width: 95%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+}

@@ -1,9 +1,8 @@
 import { useNavigate } from 'react-router';
 import error from '@shared/assets/CatMem.jpg';
-import { Button } from "@shared/ui/button/Button.jsx";
-import { RouterPath } from '@shared/constants/routerPath';
-import { APP_TEXT } from '@shared/constants/appText';
-import style from './errorStyle.module.css';
+import { Button } from '@shared/ui';
+import { RouterPath, APP_TEXT } from '@shared/constants';
+import style from './ErrorStyle.module.css';
 
 export const Error = () => {
   const navigate = useNavigate();
@@ -19,7 +18,7 @@ export const Error = () => {
         onClick={()=>navigate(RouterPath.home)}
         ariaLabel="navigate the home"
       >
-        {APP_TEXT.error.navigation}
+        {APP_TEXT.error.goToMainPage}
       </Button>
     </div>
   )
